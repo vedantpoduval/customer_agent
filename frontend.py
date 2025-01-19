@@ -27,3 +27,5 @@ with main_column:
 with right_column:
     st.text(st.session_state.message_history)
    
+   
+   
