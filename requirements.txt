@@ -1,3 +1,8 @@
 streamlit 
 chromadb
 llama-index
+llama-index-embeddings-huggingface
+langchain-core
+langchain-openai
+langgraph
+langchain
