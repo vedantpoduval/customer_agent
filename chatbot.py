@@ -7,6 +7,9 @@ from tools import querying_knowledge_base,search_for_product_reccommendations
 from langgraph.prebuilt import ToolNode
 from langchain_core.messages import AIMessage, HumanMessage, ToolMessage
 from typing import List, Dict, Any
+from langchain_google_vertexai import ChatVertexAI
+from langchain_core.messages import HumanMessage
+
 
 import os
 from dotenv import load_dotenv
@@ -14,7 +17,7 @@ load_dotenv()
 
 os.environ["LANGCHAIN_TRACING_V2"] = "true"
 os.environ["LANGCHAIN_API_KEY"] = os.getenv("LANGCHAIN_API_KEY")
-os.environ["GOOGLE_API_KEY"] = os.getenv("GOOGLE_API_KEY")
+assert os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
 prompt = """#Purpose
 
 You are a customer service chatbot for a flower shop company.You can help the customer achieve the goals listed below.
@@ -34,7 +37,7 @@ chat_template = ChatPromptTemplate(
      ('placeholder',"{messages}")]
 )
 
-llm = ChatGoogleGenerativeAI(model="gemini-1.5-pro")
+llm = ChatVertexAI(model="gemini-1.5-flash")
 
 output_parser = StrOutputParser()
 
